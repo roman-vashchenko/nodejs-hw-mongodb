@@ -7,10 +7,9 @@ const parseContactType = (type) => {
 };
 
 export const parseFilterParams = (query) => {
-  const { contactType, isFavourite } = query;
+  const { contactType } = query;
   const parsedContactType = parseContactType(contactType);
   return {
     contactType: parsedContactType,
-    isFavourite,
   };
 };
