@@ -37,7 +37,11 @@ export const getContactController = async (req, res, next) => {
     next(createHttpError.NotFound('Contact not found'));
     return;
   }
-  res.send({ status: 200, data: contact });
+  res.send({
+    status: 200,
+    message: `Successfully found contact with id ${id}!`,
+    data: contact,
+  });
 };
 
 export const createContactController = async (req, res) => {
@@ -45,7 +49,6 @@ export const createContactController = async (req, res) => {
     name: req.body.name,
     phoneNumber: req.body.phoneNumber,
     contactType: req.body.contactType,
-    isFavourite: req.body.isFavourite,
   };
 
   const createdContact = await createContact(contact);
