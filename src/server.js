@@ -2,7 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import pinoHTTP from 'pino-http';
-import routerContacts from './routers/contacts.js';
+import cookieParser from 'cookie-parser';
+import contactRouters from './routers/contacts.js';
+import authRouters from './routers/auth.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
@@ -19,7 +21,9 @@ const pino = pinoHTTP({
 const setupServer = () => {
   app.use(cors());
   app.use(pino);
-  app.use('/contacts', routerContacts);
+  app.use(cookieParser());
+  app.use('/contacts', contactRouters);
+  app.use('/auth', authRouters);
 
   app.use(notFoundHandler);
 
