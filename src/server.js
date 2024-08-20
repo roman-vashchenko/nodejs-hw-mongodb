@@ -7,6 +7,7 @@ import contactRouters from './routers/contacts.js';
 import authRouters from './routers/auth.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import { authenticate } from './middlewares/authenticate.js';
 
 dotenv.config();
 
@@ -22,7 +23,7 @@ const setupServer = () => {
   app.use(cors());
   app.use(pino);
   app.use(cookieParser());
-  app.use('/contacts', contactRouters);
+  app.use('/contacts', authenticate, contactRouters);
   app.use('/auth', authRouters);
 
   app.use(notFoundHandler);
