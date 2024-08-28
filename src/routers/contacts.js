@@ -10,6 +10,7 @@ import {
 import { validateBody } from '../middlewares/validateBody.js';
 import { contactSchema } from '../validation/contact.js';
 import { isValidId } from '../middlewares/isValidId.js';
+import { upload } from '../middlewares/upload.js';
 
 const router = Router();
 const jsonParser = express.json();
@@ -19,6 +20,7 @@ router.get('/:id', isValidId, ctrlWrapper(getContactController));
 router.post(
   '/',
   jsonParser,
+  upload.single('photo'),
   validateBody(contactSchema),
   ctrlWrapper(createContactController),
 );
@@ -26,6 +28,7 @@ router.patch(
   '/:id',
   isValidId,
   jsonParser,
+  upload.single('photo'),
   validateBody(contactSchema),
   ctrlWrapper(patchContactController),
 );
