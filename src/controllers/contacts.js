@@ -79,9 +79,12 @@ export const patchContactController = async (req, res, next) => {
   const userId = req.user._id;
   let photo = null;
 
-  const result = await uploadToCloudinary(req.file.path);
-  await fs.unlink(req.file.path);
-  photo = result.secure_url;
+  if (typeof req.file !== 'undefined') {
+    const result = await uploadToCloudinary(req.file.path);
+    await fs.unlink(req.file.path);
+    photo = result.secure_url;
+  }
+
   const updatedData = { ...req.body };
   if (photo) {
     updatedData.photo = photo;
