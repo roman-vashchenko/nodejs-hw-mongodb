@@ -1,0 +1,67 @@
+tags:
+  - Contacts
+summary: Create contact
+operationId: createContact
+description: 'Create a contact'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - phoneNumber
+          - email
+          - contactType
+        properties:
+          name:
+            description: "Contact's name"
+            type: string
+            example: 'Roman Good'
+          phoneNumber:
+            description: "Contact's number"
+            type: string
+            example: '111-222-333'
+          email:
+            description: "Contact's email"
+            type: string
+            example: 'good@gmail.com'
+          isFavourite:
+            description: 'Whether is favourite contact'
+            type: boolean
+            default: false
+            example: false
+          contactType:
+            description: "Contact's type"
+            type: string
+            enum: ['work', 'home', 'personal']
+            example: 'home'
+          photo:
+            description: "Contacts's photo"
+            type: string
+            default: null
+
+responses:
+  '201':
+    description: 'Created a student'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: 'Successfully created a student'
+            data:
+              $ref: ../../components/schemas/contact.yaml
+  '401':
+    $ref: ../../components/responses/401.yaml
