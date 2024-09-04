@@ -1,0 +1,51 @@
+tags:
+  - Auth
+summary: Refresh user
+operationId: refreshUser
+description: 'Refresh a user'
+security: []
+
+responses:
+  '200':
+    description: 'Refreshed a session!'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: 'Successfully refreshed a session!'
+            data:
+              type: object
+              required:
+                - accessToken
+              properties:
+                accessToken:
+                  description: 'AccessToken'
+                  type: string
+                  example: 3htj5G2dEOFGF2MiBY2PGXHhVmoAjmX1MX13c7K
+
+  '401':
+    description: 'Token is expired'
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+          properties:
+            status:
+              type: integer
+              example: 401
+            message:
+              type: string
+              example: 'Refresh token is expired'

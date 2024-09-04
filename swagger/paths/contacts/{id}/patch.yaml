@@ -7,9 +7,18 @@ security:
   - bearerAuth: []
 requestBody:
   content:
-    multipart/form-data:
+    application/json:
       schema:
         type: object
+        properties:
+          name:
+            type: string
+            description: 'Contact name'
+            example: 'Roman Good'
+          phoneNumber:
+            type: string
+            description: 'Contact number'
+            example: '123-123-123'
 parameters:
   - in: path
     name: id

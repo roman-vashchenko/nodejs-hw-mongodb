@@ -1,0 +1,10 @@
+tags:
+  - Auth
+summary: Logout user
+operationId: logoutUser
+description: 'Logout a user'
+security: []
+
+responses:
+  '204':
+    description: 'Logout a user'

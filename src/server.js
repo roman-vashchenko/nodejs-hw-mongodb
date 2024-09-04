@@ -8,6 +8,7 @@ import authRouters from './routers/auth.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { authenticate } from './middlewares/authenticate.js';
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ const setupServer = () => {
   app.use(cors());
   app.use(pino);
   app.use(cookieParser());
+  app.use('/api-docs', swaggerDocs());
   app.use('/contacts', authenticate, contactRouters);
   app.use('/auth', authRouters);
 

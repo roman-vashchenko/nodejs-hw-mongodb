@@ -17,6 +17,10 @@ properties:
     description: "Contact's name"
     type: string
     example: 'Roman Good'
+  phoneNumber:
+    description: "Contact's number"
+    type: string
+    example: '123-123-123'
   email:
     description: "Contact's email"
     type: string
